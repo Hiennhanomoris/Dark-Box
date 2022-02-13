@@ -5,9 +5,9 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float move_speed;
-    [SerializeField] private float _force;
+    [SerializeField] private float force;
     private bool facingRinght;
-    private bool _checkJump = true;
+    private bool checkJump = true;
 
     Rigidbody2D player_rb;
 
@@ -27,5 +27,18 @@ public class PlayerMovement : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         Vector2 movement = new Vector2(horizontal, 0);
         player_rb.velocity = movement * move_speed;
+
+        if((facingRinght == false && horizontal > 0) || (facingRinght == true && horizontal < 0))
+        {
+            Flip();
+        }
+    }
+
+    private void Flip()
+    {
+        facingRinght = !facingRinght;
+        Vector3 scaler = this.transform.localScale;
+        scaler.x *= -1;
+        this.transform.localScale = scaler;
     }
 }
