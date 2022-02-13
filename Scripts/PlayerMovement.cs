@@ -7,7 +7,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float move_speed;
     [SerializeField] private float force;
     private bool facingRinght;
-    private bool checkJump = true;
+    private bool isOnGround;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private LayerMask whatIsGround;
+    [SerializeField] private float checkRadius;
 
     Rigidbody2D player_rb;
 
@@ -20,6 +23,12 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate() 
     {
         HandleMovement();
+        CheckOnGround();
+    }
+
+    private void CheckOnGround()
+    {
+        isOnGround = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
     }
 
     private void HandleMovement()
