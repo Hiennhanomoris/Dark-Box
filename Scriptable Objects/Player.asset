@@ -16,5 +16,5 @@ MonoBehaviour:
   currentHealth: 10
   extraJump: 1
   currentJump: 1
-  jumpForce: 20
-  moveSpeed: 10
+  jumpForce: 35
+  moveSpeed: 15
