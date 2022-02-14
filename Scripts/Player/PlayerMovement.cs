@@ -9,7 +9,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask whatIsGround;
     [SerializeField] private float checkRadius;
-    public PlayerSO playerStatus;
 
     Rigidbody2D player_rb;
 
@@ -18,8 +17,8 @@ public class PlayerMovement : MonoBehaviour
         player_rb = GetComponent<Rigidbody2D>();    
         facingRinght = true;
 
-        playerStatus.currentHealth = playerStatus.maxHealth;
-        playerStatus.currentJump = playerStatus.extraJump;
+        PlayerStatus.Instance.setCurrentHealth(PlayerStatus.Instance.getMaxHealth());
+        PlayerStatus.Instance.setCurrentJump(PlayerStatus.Instance.getExtraJump());
     }
 
     private void FixedUpdate() 
@@ -38,18 +37,18 @@ public class PlayerMovement : MonoBehaviour
         if(isOnGround == true)
         {
             //reset current jump when player stand on the ground
-            playerStatus.currentJump = playerStatus.extraJump;
+            PlayerStatus.Instance.setCurrentJump(PlayerStatus.Instance.getExtraJump());
         }
 
         //player jumping when press key
-        if(Input.GetKeyDown(KeyCode.Space) && playerStatus.currentJump > 0)
+        if(Input.GetKeyDown(KeyCode.Space) && PlayerStatus.Instance.getCurrentJump() > 0)
         {
-            player_rb.velocity = Vector2.up * playerStatus.jumpForce;
-            playerStatus.currentJump -= 1;
+            player_rb.velocity = Vector2.up * PlayerStatus.Instance.getJumpForce();
+            PlayerStatus.Instance.setCurrentJump(PlayerStatus.Instance.getCurrentJump() -1);
         }
-        else if(Input.GetKeyDown(KeyCode.Space) && playerStatus.currentJump > 0 && isOnGround)
+        else if(Input.GetKeyDown(KeyCode.Space) && PlayerStatus.Instance.getCurrentJump() > 0 && isOnGround)
         {
-            player_rb.velocity = Vector2.up * playerStatus.jumpForce;
+            player_rb.velocity = Vector2.up * PlayerStatus.Instance.getJumpForce();
         }
     }
 
@@ -62,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
     {
         //move player 
         float horizontal = Input.GetAxis("Horizontal");
-        player_rb.velocity = new Vector2(horizontal * playerStatus.moveSpeed, player_rb.velocity.y);
+        player_rb.velocity = new Vector2(horizontal * PlayerStatus.Instance.getMoveSpeed(), player_rb.velocity.y);
 
         if((facingRinght == false && horizontal > 0) || (facingRinght == true && horizontal < 0))
         {
