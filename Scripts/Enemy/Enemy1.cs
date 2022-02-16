@@ -25,8 +25,7 @@ public class Enemy1 : EnemyAbstract
             Vector2 playerPos = new Vector2(player.transform.position.x, player.transform.position.y);
             Vector2 thisPos = new Vector2(this.transform.position.x, this.transform.position.y);
             Vector2 bulletDir = playerPos - thisPos;
-            Debug.Log(bulletDir);
-            enemyBullet.GetComponent<Rigidbody2D>().velocity = bulletDir * bulletForce;
+            enemyBullet.GetComponent<Rigidbody2D>().AddForce(bulletDir * bulletForce, ForceMode2D.Impulse);
 
             //wait for 2s to next fire
             yield return new WaitForSeconds(fireRate);

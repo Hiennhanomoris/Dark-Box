@@ -11,6 +11,14 @@ public class EnemyBullet : MonoBehaviour
         enemyBulletRb = GetComponent<Rigidbody2D>();
     }
 
+    /*private void FixedUpdate()
+    {
+        Vector2 playerPos = new Vector2(PlayerStatus.Instance.transform.position.x, PlayerStatus.Instance.transform.position.y);
+        Vector2 thisPos = new Vector2(this.transform.position.x, this.transform.position.y);
+        Vector2 bulletDir = playerPos - thisPos;
+        this.GetComponent<Rigidbody2D>().AddForce(bulletDir * 3f, ForceMode2D.Impulse);
+    }*/
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("enemy"))
