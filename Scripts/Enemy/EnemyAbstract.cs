@@ -9,29 +9,30 @@ public abstract class EnemyAbstract : MonoBehaviour
     public int damage;
     public int moveSpeed;
     public float fireRate;
+    public float moveDistance;
     Rigidbody2D enemyRb;
-1
-    public virtual void Awake() 
+
+    public virtual void Awake()
     {
-        currentHealth = maxHealth;   
+        currentHealth = maxHealth;
         enemyRb = GetComponent<Rigidbody2D>();
     }
 
-    public virtual void OnTriggerEnter2D(Collider2D other) 
+    public virtual void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("player"))
+        if (other.CompareTag("player"))
         {
             Destroy(this.gameObject);
-        }    
+        }
     }
 
-    public virtual void FixedUpdate() 
+    public virtual void FixedUpdate()
     {
-        Move();    
+        Move();
     }
 
     public virtual void Move()
     {
-        enemyRb.velocity = new Vector2(Mathf.PingPong(Time.time * moveSpeed, 3f) - 3f / 2, enemyRb.velocity.y);
+        enemyRb.velocity = new Vector2(Mathf.PingPong(Time.time * moveSpeed, moveDistance) - moveDistance / 2, enemyRb.velocity.y);
     }
 }

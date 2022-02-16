@@ -12,9 +12,9 @@ public class PlayerMovement : MonoBehaviour
 
     Rigidbody2D player_rb;
 
-    private void Awake() 
+    private void Start()
     {
-        player_rb = GetComponent<Rigidbody2D>();    
+        player_rb = GetComponent<Rigidbody2D>();
         facingRinght = true;
 
         PlayerStatus.Instance.setCurrentHealth(PlayerStatus.Instance.getMaxHealth());
@@ -27,26 +27,26 @@ public class PlayerMovement : MonoBehaviour
         CheckOnGround();
     }
 
-    private void Update() 
+    private void Update()
     {
         HandleJumping();
     }
 
     private void HandleJumping()
     {
-        if(isOnGround == true)
+        if (isOnGround == true)
         {
             //reset current jump when player stand on the ground
             PlayerStatus.Instance.setCurrentJump(PlayerStatus.Instance.getExtraJump());
         }
 
         //player jumping when press key
-        if(Input.GetKeyDown(KeyCode.Space) && PlayerStatus.Instance.getCurrentJump() > 0)
+        if (Input.GetKeyDown(KeyCode.Space) && PlayerStatus.Instance.getCurrentJump() > 0)
         {
             player_rb.velocity = Vector2.up * PlayerStatus.Instance.getJumpForce();
-            PlayerStatus.Instance.setCurrentJump(PlayerStatus.Instance.getCurrentJump() -1);
+            PlayerStatus.Instance.setCurrentJump(PlayerStatus.Instance.getCurrentJump() - 1);
         }
-        else if(Input.GetKeyDown(KeyCode.Space) && PlayerStatus.Instance.getCurrentJump() > 0 && isOnGround)
+        else if (Input.GetKeyDown(KeyCode.Space) && PlayerStatus.Instance.getCurrentJump() > 0 && isOnGround)
         {
             player_rb.velocity = Vector2.up * PlayerStatus.Instance.getJumpForce();
         }
@@ -63,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         player_rb.velocity = new Vector2(horizontal * PlayerStatus.Instance.getMoveSpeed(), player_rb.velocity.y);
 
-        if((facingRinght == false && horizontal > 0) || (facingRinght == true && horizontal < 0))
+        if ((facingRinght == false && horizontal > 0) || (facingRinght == true && horizontal < 0))
         {
             Flip();
         }

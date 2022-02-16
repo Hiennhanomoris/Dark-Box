@@ -447,7 +447,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &789554612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -726,7 +726,7 @@ MonoBehaviour:
   damage: 2
   moveSpeed: 1
   fireRate: 0
-  moveDistance: 10
+  moveDistance: 7
   enemyBullet: {fileID: 6429019249608586902, guid: b7f5119f35ca1a847b3603ddbe8dd6c8, type: 3}
   spawnPoint: {fileID: 2137859210}
 --- !u!50 &1848147344
