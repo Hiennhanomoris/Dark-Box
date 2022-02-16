@@ -6,7 +6,6 @@ using UnityEngine;
 public class Enemy1 : EnemyAbstract
 {
     public GameObject enemyBullet;
-    private GameObject player;
     [SerializeField] private Transform spawnPoint;
 
     public override void FixedUpdate()

@@ -9,13 +9,12 @@ public abstract class EnemyAbstract : MonoBehaviour
     public int damage;
     public int moveSpeed;
     public float fireRate;
-    public float moveDistance;
     Rigidbody2D enemyRb;
 
     public virtual void Awake() 
     {
         currentHealth = maxHealth;   
-        enemyRb = GetComponent<Rigidbody2D>(); 
+        enemyRb = GetComponent<Rigidbody2D>();
     }
 
     public virtual void OnTriggerEnter2D(Collider2D other) 
@@ -33,6 +32,6 @@ public abstract class EnemyAbstract : MonoBehaviour
 
     public virtual void Move()
     {
-        enemyRb.velocity = new Vector2(Mathf.PingPong(Time.time * moveSpeed, moveDistance) - moveDistance/2, enemyRb.velocity.y);
+        enemyRb.velocity = new Vector2(Mathf.PingPong(Time.time * moveSpeed, 3f) - 3f / 2, enemyRb.velocity.y);
     }
 }

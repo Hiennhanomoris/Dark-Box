@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
         PlayerStatus.Instance.setCurrentJump(PlayerStatus.Instance.getExtraJump());
     }
 
-    private void FixedUpdate() 
+    private void FixedUpdate()
     {
         HandleMovement();
         CheckOnGround();
