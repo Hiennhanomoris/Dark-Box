@@ -7,18 +7,29 @@ public class Enemy1 : EnemyAbstract
 {
     public GameObject enemyBullet;
     [SerializeField] private Transform spawnPoint;
+    public GameObject player;
+    [SerializeField] private float bulletForce;
 
-    public override void FixedUpdate()
+    private void Start()
     {
-        Move();
         StartCoroutine(Fire());
     }
 
-    private IEnumerator Fire()
+    public IEnumerator Fire()
     {
-        yield return new WaitForSeconds(fireRate);
-        Instantiate(enemyBullet, spawnPoint.position, Quaternion.identity);
+        while(player.GetComponent<PlayerStatus>().getCurrentHealth() > 0)
+        {
+            Instantiate(enemyBullet, spawnPoint.position, Quaternion.identity);
 
-        enemyBullet.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 0));
+            //caculate direction for bullet
+            Vector2 playerPos = new Vector2(player.transform.position.x, player.transform.position.y);
+            Vector2 thisPos = new Vector2(this.transform.position.x, this.transform.position.y);
+            Vector2 bulletDir = playerPos - thisPos;
+            Debug.Log(bulletDir);
+            enemyBullet.GetComponent<Rigidbody2D>().velocity = bulletDir * bulletForce;
+
+            //wait for 2s to next fire
+            yield return new WaitForSeconds(fireRate);
+        }
     }
 }

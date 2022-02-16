@@ -11,7 +11,7 @@ public abstract class EnemyAbstract : MonoBehaviour
     public float fireRate;
     public float moveDistance;
     Rigidbody2D enemyRb;
-
+   
     public virtual void Awake()
     {
         currentHealth = maxHealth;

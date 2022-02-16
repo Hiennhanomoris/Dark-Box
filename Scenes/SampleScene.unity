@@ -447,7 +447,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &789554612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -636,6 +636,7 @@ GameObject:
   - component: {fileID: 1848147341}
   - component: {fileID: 1848147344}
   - component: {fileID: 1848147343}
+  - component: {fileID: 1848147345}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -725,10 +726,12 @@ MonoBehaviour:
   currentHealth: 10
   damage: 2
   moveSpeed: 1
-  fireRate: 0
+  fireRate: 3
   moveDistance: 7
   enemyBullet: {fileID: 6429019249608586902, guid: b7f5119f35ca1a847b3603ddbe8dd6c8, type: 3}
   spawnPoint: {fileID: 2137859210}
+  player: {fileID: 789554611}
+  bulletForce: 20
 --- !u!50 &1848147344
 Rigidbody2D:
   serializedVersion: 4
@@ -750,6 +753,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!58 &1848147345
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848147340}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1885118382
 GameObject:
   m_ObjectHideFlags: 0

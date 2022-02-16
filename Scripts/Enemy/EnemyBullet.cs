@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyBullet : MonoBehaviour
 {
     Rigidbody2D enemyBulletRb;
+
     private void Awake()
     {
         enemyBulletRb = GetComponent<Rigidbody2D>();
