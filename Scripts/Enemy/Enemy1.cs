@@ -19,13 +19,13 @@ public class Enemy1 : EnemyAbstract
     {
         while(player.GetComponent<PlayerStatus>().getCurrentHealth() > 0)
         {
-            Instantiate(enemyBullet, spawnPoint.position, Quaternion.identity);
+            var spawnedBullet = Instantiate(enemyBullet, spawnPoint.position, Quaternion.identity);
 
             //caculate direction for bullet
             Vector2 playerPos = new Vector2(player.transform.position.x, player.transform.position.y);
             Vector2 thisPos = new Vector2(this.transform.position.x, this.transform.position.y);
             Vector2 bulletDir = playerPos - thisPos;
-            enemyBullet.GetComponent<Rigidbody2D>().AddForce(bulletDir * bulletForce, ForceMode2D.Impulse);
+            spawnedBullet.GetComponent<Rigidbody2D>().AddForce(bulletDir * bulletForce, ForceMode2D.Impulse);
 
             //wait for 2s to next fires
             yield return new WaitForSeconds(fireRate);
