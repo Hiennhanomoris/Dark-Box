@@ -27,7 +27,7 @@ public class Enemy1 : EnemyAbstract
             Vector2 bulletDir = playerPos - thisPos;
             enemyBullet.GetComponent<Rigidbody2D>().AddForce(bulletDir * bulletForce, ForceMode2D.Impulse);
 
-            //wait for 2s to next fire
+            //wait for 2s to next fires
             yield return new WaitForSeconds(fireRate);
         }
     }
