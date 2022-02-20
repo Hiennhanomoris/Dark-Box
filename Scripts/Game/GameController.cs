@@ -11,7 +11,7 @@ public class GameController : MonoBehaviour
         {
             Destroy(this);
             return;
-        }    
+        }
         Instance = this;
     }
 }
