@@ -15,7 +15,7 @@ public class PlayerStatus : MonoBehaviour
             Destroy(this);
             return;
         }    
-        Instance = this;    
+        Instance = this;
     }
 
     public int getCurrentHealth()

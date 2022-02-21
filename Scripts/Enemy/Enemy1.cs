@@ -9,6 +9,7 @@ public class Enemy1 : EnemyAbstract
     [SerializeField] private Transform spawnPoint;
     public GameObject player;
     [SerializeField] private float bulletForce;
+    [SerializeField] private float fireDistance;
 
     private void Start()
     {
