@@ -5,11 +5,18 @@ using UnityEngine;
 public class EnemyBullet : MonoBehaviour
 {
     Rigidbody2D enemyBulletRb;
+    private int damage;
+
+    public void setDamage(int amount)
+    {
+        this.damage = amount;
+    }
 
     private void Awake()
     {
         enemyBulletRb = GetComponent<Rigidbody2D>();
     }
+
 
     /*private void FixedUpdate()
     {
@@ -22,6 +29,10 @@ public class EnemyBullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!collision.CompareTag("enemy"))
+        {
+            //get damage from Enemy to take damage for player
+            PlayerStatus.Instance.TakeDamage(damage);
             Destroy(this.gameObject);
+        }
     }
 }
