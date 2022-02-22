@@ -14,4 +14,10 @@ public class GameController : MonoBehaviour
         }
         Instance = this;
     }
+
+    private IEnumerator SpawnEnemy1()
+    {
+        
+        yield return null;
+    }
 }

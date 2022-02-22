@@ -7,7 +7,6 @@ public class Enemy1 : EnemyAbstract
 {
     public GameObject enemyBullet;
     [SerializeField] private Transform spawnPoint;
-    public GameObject player;
     [SerializeField] private float bulletForce;
     [SerializeField] private float fireDistance;
     private bool readyToFire;
@@ -20,13 +19,14 @@ public class Enemy1 : EnemyAbstract
 
     private void Update() 
     {
-        if(transform.position.x - fireDistance < player.transform.position.x && transform.position.x + fireDistance > player.transform.position.x)
+        if(transform.position.x - fireDistance < PlayerStatus.Instance.transform.position.x && 
+            transform.position.x + fireDistance > PlayerStatus.Instance.transform.position.x)
             readyToFire = true;
     }
 
     public IEnumerator Fire()
     {
-        while(player.GetComponent<PlayerStatus>().getCurrentHealth() > 0)
+        while(PlayerStatus.Instance.getCurrentHealth() > 0)
         {
             //enemy will fire player when player in enemy's area
             if(readyToFire)
@@ -37,7 +37,7 @@ public class Enemy1 : EnemyAbstract
                 spawnedBullet.GetComponent<EnemyBullet>().setDamage(damage);
 
                 //caculate direction for bullet
-                Vector2 playerPos = new Vector2(player.transform.position.x, player.transform.position.y);
+                Vector2 playerPos = new Vector2(PlayerStatus.Instance.transform.position.x, PlayerStatus.Instance.transform.position.y);
                 Vector2 thisPos = new Vector2(this.transform.position.x, this.transform.position.y);
                 Vector2 bulletDir = playerPos - thisPos;
                 spawnedBullet.GetComponent<Rigidbody2D>().AddForce(bulletDir * bulletForce, ForceMode2D.Impulse);
