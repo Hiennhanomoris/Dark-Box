@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   maxHealth: 10
-  currentHealth: 10
+  currentHealth: 8
   extraJump: 1
   currentJump: 1
-  jumpForce: 20
-  moveSpeed: 7
+  jumpForce: 17
+  moveSpeed: 5

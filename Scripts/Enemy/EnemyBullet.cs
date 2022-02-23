@@ -28,11 +28,13 @@ public class EnemyBullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("enemy"))
+        if (collision.CompareTag("player"))
         {
             //get damage from Enemy to take damage for player
             PlayerStatus.Instance.TakeDamage(damage);
-            Destroy(this.gameObject);
         }
+        //destroy bullet whenever it hit something except enemy
+        if(!collision.CompareTag("enemy"))
+            Destroy(this.gameObject);
     }
 }
