@@ -5,6 +5,9 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     public static GameController Instance;
+    [SerializeField] private GameObject enemy1;
+    [SerializeField] private Transform[] enemy1SpawnTranform;
+
     private void Awake() 
     {
         if(Instance != null && Instance != this)
@@ -15,9 +18,19 @@ public class GameController : MonoBehaviour
         Instance = this;
     }
 
+    private void Start() 
+    {
+        StartCoroutine(SpawnEnemy1());    
+    }
+
     private IEnumerator SpawnEnemy1()
     {
-        
-        yield return null;
+        yield return new WaitForSeconds(1f);
+        for(int i = 0; i < enemy1SpawnTranform.Length; i++)
+        {
+            Instantiate(enemy1, enemy1SpawnTranform[i].position, Quaternion.identity);
+
+            yield return new WaitForSeconds(2f);
+        }
     }
 }
