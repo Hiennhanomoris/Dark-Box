@@ -10,7 +10,7 @@ public abstract class EnemyAbstract : MonoBehaviour
     public int moveSpeed;
     public float fireRate;
     public float moveDistance;
-    Rigidbody2D enemyRb;
+    protected Rigidbody2D enemyRb;
    
     public virtual void Awake()
     {
@@ -22,7 +22,7 @@ public abstract class EnemyAbstract : MonoBehaviour
     {
         if (other.CompareTag("player"))
         {
-            Destroy(this.gameObject);
+            Destroy(other.gameObject);
         }
     }
 
